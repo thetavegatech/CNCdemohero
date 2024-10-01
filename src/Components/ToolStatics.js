@@ -182,7 +182,7 @@ const dummyData = {
   labels: ['April', 'May', 'June', 'July', 'Aug', 'Sept'],
   datasets: [
     {
-      label: 'Dummy Data',
+      label: 'Tools Data',
       data: [12, 19, 3, 5, 2, 3],
       borderColor: 'rgba(75, 192, 192, 1)',
       backgroundColor: 'rgba(75, 192, 192, 0.2)',
@@ -195,7 +195,7 @@ const dummyOptions = {
   responsive: true,
   plugins: {
     legend: { display: true },
-    title: { display: true, text: 'Dummy Chart' },
+    title: { display: true, text: 'Tools Life Chart' },
   },
 };
 
