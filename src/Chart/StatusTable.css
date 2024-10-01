@@ -1,0 +1,8 @@
+.high-value {
+    background-color: rgba(92, 238, 97, 0.2) !important; /* Green for high values */
+  }
+  
+  .low-value {
+    background-color: rgba(255, 99, 132, 0.2) !important; /* Red for low values */
+  }
+  

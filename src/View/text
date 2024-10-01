@@ -1,0 +1,163 @@
+
+import React, { useState } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Container, Row, Col } from 'react-bootstrap';
+
+const ResponsiveForm = () => {
+  const [formData, setFormData] = useState({
+    machineId: '',
+    downtimeReason: '',
+    technician: '',
+    shift: '',
+    lineName: '',
+    location: '',
+    downtimeStart: '',
+    downtimeEnd: '',
+    remark: '',
+    actionTaken: ''
+  });
+
+  // Handle form data changes
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.id]: e.target.value
+    });
+  };
+
+  // Handle form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch('http://localhost:5000/downtime', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        alert('Downtime saved successfully!');
+        console.log('Response data:', data);
+      } else {
+        const errorData = await response.json();
+        console.error('Error saving downtime:', errorData);
+        alert('Failed to save downtime.');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('An error occurred while saving downtime.');
+    }
+  };
+
+  return (
+    <Container fluid className="p-4 mt-5">
+      <div className="container my-5 pt-2 border border-1 mt-0">
+        <Row className="text-center py-2 mb-0">
+          <Col>
+            <h3>DownTime </h3>
+          </Col>
+        </Row>
+        <form className='mt-4 mb-2' onSubmit={handleSubmit}>
+          <div className="row mt-4">
+            {/* Machine ID */}
+            <div className="col-lg-4 col-md-6 col-sm-12 mb-3">
+              <label htmlFor="machineId" className="form-label">Machine ID</label>
+              <select id="machineId" className="form-select" value={formData.machineId} onChange={handleChange}>
+                <option defaultValue>Select Machine ID</option>
+                <option>Machine 001</option>
+                <option>Machine 002</option>
+                <option>Machine 003</option>
+              </select>
+            </div>
+
+            {/* Downtime Reason */}
+            <div className="col-lg-4 col-md-6 col-sm-12 mb-3">
+              <label htmlFor="downtimeReason" className="form-label">Downtime Reason</label>
+              <select id="downtimeReason" className="form-select" value={formData.downtimeReason} onChange={handleChange}>
+                <option defaultValue>Select Downtime Reason</option>
+                <option>Breakdown</option>
+                <option>Maintenance</option>
+                <option>Setup Issue</option>
+              </select>
+            </div>
+
+            {/* Assigned Technician */}
+            <div className="col-lg-4 col-md-6 col-sm-12 mb-3">
+              <label htmlFor="technician" className="form-label">Assigned Technician</label>
+              <select id="technician" className="form-select" value={formData.technician} onChange={handleChange}>
+                <option defaultValue>Select Technician</option>
+                <option>Technician 1</option>
+                <option>Technician 2</option>
+                <option>Technician 3</option>
+              </select>
+            </div>
+
+            {/* Shift */}
+            <div className="col-lg-4 col-md-6 col-sm-12 mb-3">
+              <label htmlFor="shift" className="form-label">Shift</label>
+              <select id="shift" className="form-select" value={formData.shift} onChange={handleChange}>
+                <option defaultValue>Select Shift</option>
+                <option>Shift 1</option>
+                <option>Shift 2</option>
+                <option>Shift 3</option>
+              </select>
+            </div>
+
+            {/* Line Name */}
+            <div className="col-lg-4 col-md-6 col-sm-12 mb-3">
+              <label htmlFor="lineName" className="form-label">Line Name</label>
+              <select id="lineName" className="form-select" value={formData.lineName} onChange={handleChange}>
+                <option defaultValue>Select Line</option>
+                <option>Line 1</option>
+                <option>Line 2</option>
+                <option>Line 3</option>
+              </select>
+            </div>
+
+            {/* Location */}
+            <div className="col-lg-4 col-md-6 col-sm-12 mb-3">
+              <label htmlFor="location" className="form-label">Location</label>
+              <input type="text" id="location" className="form-control" placeholder="Enter Location" value={formData.location} onChange={handleChange} />
+            </div>
+
+            {/* Downtime Start */}
+            <div className="col-lg-4 col-md-6 col-sm-12 mb-3">
+              <label htmlFor="downtimeStart" className="form-label">Downtime Start</label>
+              <input type="datetime-local" id="downtimeStart" className="form-control" value={formData.downtimeStart} onChange={handleChange} />
+            </div>
+
+            {/* Downtime End */}
+            <div className="col-lg-4 col-md-6 col-sm-12 mb-3">
+              <label htmlFor="downtimeEnd" className="form-label">Downtime End</label>
+              <input type="datetime-local" id="downtimeEnd" className="form-control" value={formData.downtimeEnd} onChange={handleChange} />
+            </div>
+
+            {/* Remark */}
+            <div className="col-lg-4 col-md-6 col-sm-12 mb-3">
+              <label htmlFor="remark" className="form-label">Remark</label>
+              <textarea id="remark" className="form-control" rows="2" placeholder="Enter Remark" value={formData.remark} onChange={handleChange}></textarea>
+            </div>
+
+            {/* Action Taken */}
+            <div className="col-lg-8 col-md-10 col-sm-12 mb-1" style={{ width: '25rem'}}>
+              <label htmlFor="actionTaken" className="form-label">Action Taken</label>
+              <textarea id="actionTaken" className="form-control" rows="3" placeholder="Enter Action Taken" value={formData.actionTaken} onChange={handleChange}></textarea>
+            </div>
+
+            {/* Save Downtime Button */}
+            <div className="col-lg-4 col-md-4 col-sm-10 mb-3 d-flex align-items-end d-flex" style={{ columnGap: '1rem'}}>
+              <button type="submit" className="btn btn-success w-100">Save Downtime</button>
+              <button type="button" className="btn btn-secondary w-100">Cancel</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </Container>
+  );
+};
+
+export default ResponsiveForm;
