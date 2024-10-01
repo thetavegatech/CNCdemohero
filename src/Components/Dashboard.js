@@ -82,7 +82,7 @@ const Dashboard = () => {
   };
 
   const lineChartData = {
-    labels: ["Feb 16", "Feb 17", "Feb 18", "Feb 19", "Feb 20"],
+    labels: ["Sept 21", "Sept 22", "Sept 23", "Sept 24", "Sept 25"],
     datasets: [
       {
         label: "Actual",

@@ -76,7 +76,7 @@ const Dashboard = () => {
 
   // Chart data for Line OEE
   const lineOEEData = {
-    labels: ['JAN', 'FEB', 'MAR'],
+    labels: ['July', 'Aug', 'Sept'],
     datasets: [
       {
         label: 'Line OEE in %',

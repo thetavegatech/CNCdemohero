@@ -179,7 +179,7 @@ ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, T
 
 // Dummy data and options for charts
 const dummyData = {
-  labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+  labels: ['April', 'May', 'June', 'July', 'Aug', 'Sept'],
   datasets: [
     {
       label: 'Dummy Data',

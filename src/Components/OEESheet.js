@@ -156,9 +156,9 @@ const ProductionOEEDashboard = () => {
                   <th rowSpan="2">TOTAL</th>
                 </tr>
                 <tr>
-                  <th>Feb-15</th>
-                  <th>Mar-15</th>
-                  <th>Apr-15</th>
+                  <th>July-24</th>
+                  <th>Aug-24</th>
+                  <th>Sept-24</th>
                   {[...Array(30)].map((_, index) => (
                     <th key={index} style={{ width: '20px' }}>{index + 1}</th>
                   ))}
